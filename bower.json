@@ -1,0 +1,18 @@
+{
+  "name": "middleman-presentation",
+  "version": "0.0.0",
+  "authors": [
+    "Jason <jason@hellojason.net>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "remark": "~0.10.2"
+  }
+}

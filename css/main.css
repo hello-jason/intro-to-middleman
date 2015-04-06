@@ -1,0 +1,30 @@
+body {
+  font-family: 'Droid Sans';
+}
+h1, h2, h3 {
+  font-family: 'Yanone Kaffeesatz';
+  font-weight: normal;
+}
+.remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+a:link, a:visited, a:hover {
+  color: inherit;
+}
+
+/* All Slides*/
+.remark-slide-content {
+
+}
+
+/* Introduction */
+#slide-introduction {
+  background-color: #F3C859;
+  color: #fff;
+}
+#slide-introduction a:link, #slide-introduction a:visited, #slide-introduction a:hover {
+  color: #9e823a;
+}
+#slide-introduction img {
+  width: 18.75em;
+  height: 18.75em;
+}
