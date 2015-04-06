@@ -11,72 +11,127 @@ class: middle, center
 
 ---
 
+name: history
+
 # Brief History of Middleman
 
-These days, many websites are built with an API in mind. Rather than package the frontend and the backend together, both can be built and deployed independently using the public API to pull data from the backend and display it on the frontend. Static websites are incredibly fast and require very little RAM. A front-end built to stand-alone can be deployed directly to the cloud or a CDN. Many designers and developers simply deliver static HTML/JS/CSS to their clients.
+* Built on Ruby programming language, inspired by Ruby on Rails
 
-# About Middleman
+--
 
 * Fork of [StaticMatic](https://github.com/staticmatic/staticmatic) by [Thomas Reynolds](http://awardwinningfjords.com/) (which he [has regretted](http://awardwinningfjords.com/2012/12/30/dont-fork.html))
 
-* Built on Ruby programming language
+???
 
-* Allows for [Sass](http://sass-lang.com/), [CoffeeScript](http://coffeescript.org/), asset management with [Sprockets](https://github.com/sstephenson/sprockets), and HTML templating (ERb, Haml, Slim)
+* Article written by Thomas where he insists forking is a responsibility. "I should have contributed to StaticMatic...to the existing community and improved it."
+
+--
+
+* Allows for [Sass](http://sass-lang.com/), [CoffeeScript](http://coffeescript.org/), asset management with [Sprockets](https://github.com/sstephenson/sprockets), and HTML templating (ERb, Haml, Slim) -- *all completely optional*
+
+--
 
 * Currently at version 3.3.10, working on version 4
 
 ???
 
-# About
-
-* Thomas' article insists forking is a responsibility. "I should have contributed to StaticMatic...to the existing community and improved it."
-
-* If you write HTML/CSS and don't know about preprocessors or html templating, holy crap you're missing out
+* Documentation on the Middleman website about upgrading to v4.
 
 ---
 
-# Gentle to Beginners
+# Great for Beginners
 
 * No database; just static HTML, CSS, and JavaScript (if you need it)
+
+--
 
 * Opinionated if you want, overwritable if you don't
 
 ???
 
-# Beginners
+* Comes out the box with directory structure, ERb templating No database to worry about
 
-* No database to worry about
-
----
+--
 
 # Great for Advanced Projects
 
-Could be the right tool for a project with distinctive frontend, api, and backend components
+* Many websites are now built with an API. Frontend can use this API to pull data from a separate backend application.
+
+--
+
+* Many designers and developers simply deliver static HTML/JS/CSS to their clients
+
+???
+
+* Makes applications easier to maintain and more scalable
 
 ---
 
-# Setting up Middleman
+name: installation
 
-**RTFM**
-
-We will be using the command line, but it's not that bad
+# Installation and setup
 
 ## Dependencies
 
 https://middlemanapp.com/basics/install/
 
 * Ruby language
+
 * RubyGems
 
+--
 
-* Installation and setup
+## Create new project
+
+* cd into a directory and run `middleman init` to create a new project
+
+```tree
+├── config.rb
+├── Gemfile
+├── Gemfile.lock
+├── source
+    ├── images
+        ├── background.png
+        ├── middleman.png
+        ├── index.html.erb
+        ├── javascripts
+        ├── all.js
+    ├── layouts
+        ├── layout.erb
+    ├── stylesheets
+        ├── all.css
+        ├── normalize.css
+```
+
+--
+
+## Setting up Middleman
+
+![RTFM](images/rtfm.png)
+**RTFM**
+
+We will be using the command line, but it's not that bad
 
 ---
 
 # Introduction
 
-* livereload
-* Recommended gems and purposes - you can sometimes get away gems made for RoR
+## livereload
+
+* Browser plugin
+
+--
+
+* Enable livereload in `config.rb`
+
+--
+
+## Recommended gems and purposes
+
+* Lots of Middleman-specific gems (some RoR gems work)
+
+--
+
 * config.rb
 
 ---
