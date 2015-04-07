@@ -29,6 +29,11 @@ name: history
 
 * Allows for [Sass](http://sass-lang.com/), [CoffeeScript](http://coffeescript.org/), asset management with [Sprockets](https://github.com/sstephenson/sprockets), and HTML templating (ERb, Haml, Slim) -- *all completely optional*
 
+![Sass](images/logo-sass.jpg)
+![coffeescript](images/logo-coffeescript.jpg)
+![slim](images/logo-slim.jpg)
+![HAML](images/logo-haml.jpg)
+
 --
 
 * Currently at version 3.3.10, working on version 4
@@ -41,7 +46,7 @@ name: history
 
 # Great for Beginners
 
-* No database; just static HTML, CSS, and JavaScript (if you need it)
+* No database. Just HTML, CSS, and (if needed) JavaScript
 
 --
 
@@ -49,51 +54,21 @@ name: history
 
 ???
 
-* Comes out the box with directory structure, ERb templating No database to worry about
+* Comes out the box with a directory structure and ERb templating. You can change the directory structure, templates to Slim (or Haml, etc).
 
 --
 
-# Great for Advanced Projects
-
-* Many websites are now built with an API. Frontend can use this API to pull data from a separate backend application.
-
---
-
-* Many designers and developers simply deliver static HTML/JS/CSS to their clients
-
-???
-
-* Makes applications easier to maintain and more scalable
-
----
-
-name: installation
-
-# Installation and setup
-
-## Dependencies
-
-https://middlemanapp.com/basics/install/
-
-* Ruby language
-
-* RubyGems
-
---
-
-## Create new project
-
-* cd into a directory and run `middleman init` to create a new project
+* One HTML file is one page
 
 ```tree
 ├── config.rb
 ├── Gemfile
 ├── Gemfile.lock
 ├── source
+    ├── index.html.erb
     ├── images
         ├── background.png
         ├── middleman.png
-        ├── index.html.erb
         ├── javascripts
         ├── all.js
     ├── layouts
@@ -103,14 +78,180 @@ https://middlemanapp.com/basics/install/
         ├── normalize.css
 ```
 
+---
+
+# Great for Advanced Projects
+
+* Many websites are now built with an API. Frontend can use this API to pull data from a separate backend application. This keeps applications scalable and easier to maintain.
+
 --
+
+* Many designers and developers simply deliver static HTML/JS/CSS to their clients
+
+--
+
+**Automation**
+
+* One line deploys ([middleman-deploy](https://github.com/middleman-contrib/middleman-deploy))
+
+* Image compression ([middleman-imageoptim](https://github.com/plasticine/middleman-imageoptim))
+
+* Favicon generation ([middleman-favicon-maker](https://github.com/follmann/middleman-favicon-maker))
+
+???
+
+There are lots of Middleman-specific extensions to be had, called gems
+
+---
+
+name: environments
+
+Configure options for specific environments, namely Development and Production.
+
+--
+
+### Development
+
+```ruby
+configure :development do
+  # do things only in development
+end
+```
+
+???
+
+One benefit of ruby is that it was designed to be easy to read. 
+
+--
+
+### Production
+
+```ruby
+configure :build do
+  # Ignore during build process
+  ignore ".git"
+  # Asset compression
+  activate :minify_css
+  activate :minify_javascript
+  activate :gzip
+end
+```
+
+???
+
+Middleman creates website files in a folder called build. Not all files need to be included, such as the .git folder.
+
+---
+
+name: installation
+
+### Installation & Setup
+
+**2 primary requirements** (one-time installations):
+
+--
+
+1. Ruby language
+
+  **OS X** - included<br>
+  **Linux** - straight-forward with [rbenv](https://github.com/sstephenson/rbenv)<br>
+  **Windows** - [RubyInstaller](http://rubyinstaller.org/) (but expect issues getting projects going)
+
+???
+
+Current version of Middleman (3.3.10) requires ruby >= 1.9.3. Latest ruby is current at 2.2.*
+
+On OS X Yosemite and Mavericks, Ruby 2.0 is included. OS X Mountain Lion, Lion, and Snow Leopard ship with Ruby 1.8.7.
+
+--
+
+1. RubyGems
+
+  Extensions to ruby are packaged into `gems`. Visit [rubygems.org](https://rubygems.org/) to install RubyGems and search for availalbe gems.
+
+  Middleman has a lot of Middleman-specific gems
+
+--
+
+![RTFM](images/rtfm.png)
+
+**More information**
+
+Official Middleman documentation is very good.
+
+[https://middlemanapp.com/basics/install/](https://middlemanapp.com/basics/install/)
+
+???
+
+
+---
+
+name: install-middleman
+class: middle
+
+### Installing Middleman
+
+With ruby and RubyGems installed, we need to install Middleman itself.
+
+Middleman is just a gem. Install it with RubyGems (one-time installation):
+
+```bash
+gem install middleman
+```
+
+---
+
+name: new-project
+
+### Creating a New Middleman Project
+
+Working with Middleman requires using the command line. There are **very few** commands needed to get started.
+
+```bash
+middleman init project-name
+```
+
+???
+
+In reality, there's only 3 commands we care about:
+
+1. Creating a project (which we're doing here)
+1. Starting a Middleman server (so we can see it in our browser)
+1. Building a project (so we can put it on a web server)
+
+Middleman commands are preceded with the word `middleman`.
+
+--
+
+This creates a new directory called project-name and puts all these files and folders into it.
+
+```tree
+├── config.rb
+├── Gemfile
+├── Gemfile.lock
+├── source
+    ├── index.html.erb
+    ├── images
+        ├── background.png
+        ├── middleman.png
+        ├── javascripts
+        ├── all.js
+    ├── layouts
+        ├── layout.erb
+    ├── stylesheets
+        ├── all.css
+        ├── normalize.css
+```
+
+???
+
+Initialization allows you to pass in additional parameters, such as custom [project templates](https://directory.middlemanapp.com/#/templates/all).
+
+---
 
 ## Setting up Middleman
 
-![RTFM](images/rtfm.png)
-**RTFM**
-
-We will be using the command line, but it's not that bad
+THIS IS WHERE YOU LEFT OFF
 
 ---
 

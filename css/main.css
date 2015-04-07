@@ -34,6 +34,7 @@ a:link, a:visited, a:hover {
 }
 
 img[alt^=RTFM] {
-	max-width: 275px;
-	float: right;
+	max-width: 193px;
+	float: left;
+  margin-right: 1em;
 }
