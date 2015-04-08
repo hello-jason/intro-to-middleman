@@ -8,6 +8,13 @@ h1, h2, h3 {
 .remark-code, .remark-inline-code {
   font-family: 'Ubuntu Mono';
 }
+.remark-inline-code {
+  background: #F3C859;
+  border-bottom: 1px solid #9e823a;
+  padding: 3px 6px;
+  color: #9e823a;
+  display: inline-block;
+}
 
 a:link, a:visited, a:hover {
   color: inherit;

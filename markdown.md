@@ -122,25 +122,6 @@ end
 
 One benefit of ruby is that it was designed to be easy to read. 
 
---
-
-### Production
-
-```ruby
-configure :build do
-  # Ignore during build process
-  ignore ".git"
-  # Asset compression
-  activate :minify_css
-  activate :minify_javascript
-  activate :gzip
-end
-```
-
-???
-
-Middleman creates website files in a folder called build. Not all files need to be included, such as the .git folder.
-
 ---
 
 name: installation
@@ -249,13 +230,13 @@ Initialization allows you to pass in additional parameters, such as custom [proj
 
 ---
 
-## Setting up Middleman
+### Setting up Middleman
 
 THIS IS WHERE YOU LEFT OFF
 
 ---
 
-# Introduction
+### Introduction
 
 ## livereload
 
@@ -267,7 +248,7 @@ THIS IS WHERE YOU LEFT OFF
 
 --
 
-## Recommended gems and purposes
+### Recommended gems and purposes
 
 * Lots of Middleman-specific gems (some RoR gems work)
 
@@ -277,7 +258,7 @@ THIS IS WHERE YOU LEFT OFF
 
 ---
 
-# Commands and usage
+### Commands and usage
 
 * Starting a local server (webrick)
 
@@ -286,33 +267,213 @@ THIS IS WHERE YOU LEFT OFF
 middleman
 ```
 
-* Frontmatter
+---
 
-## Building
+name: Layouts
 
-## Deploying
+# Layouts
 
-* middleman-deploy
+* A common method for reusing html is to separate it into partials (such as `header` and `footer`) and include them within each page.
 
-## Hosting
+```php
+* <?php include('header.php') ?>
+    <h1>Hello Refresh</h1>
+    <p>This is some content for this page</p>
+* <?php include('footer.php') ?>
+```
 
-* [Github Pages](https://pages.github.com/)
-* [Bitballoon](https://www.bitballoon.com)
-* [Divshot](https://divshot.com/)
-* [Forge](https://getforge.com/)
+???
 
-## Advanced
+This works well enough, but PHP is executed each time a user requests this page. This is inefficient.
 
-* SEO
-* middleman-blog
+--
 
-### Forms
+* In Middleman, the layout is used for the overall scaffold of all pages. Then, the unique content on each page is included through the `yield` call.
 
-* Bitballoon, integrated into hosting
-* [FormAssembly](http://www.formassembly.com/)
-* Other SaaS options?
+???
 
-### SEO
+Yield concept also applicable to Ruby on Rails, Jekyll, Node apps.
 
-* Per-page title, meta description
-* XML sitemap
+--
+
+* A layout is the overall structure used for each page. You can have multiple layouts, but the default one should be called `layout.html.erb`.
+
+???
+
+We read the filename from right to left. When this example builds it will compile `erb` into `html`.
+
+Other template engines can be used instead of erb, such as `haml` or `slim`.
+
+---
+
+name: layout-with-content
+
+*layout.html.erb*
+
+```html
+<html>
+<head>
+  <title>Welcomem to Refresh</title>
+</head>
+<body>
+*  <%= yield %>
+</body>
+</html>
+```
+
+???
+
+Example layout
+
+--
+
+*about.html.erb*
+
+```html
+<h1>Hello Refresh</h1>
+<p>This is some content for this page.</p>
+```
+
+???
+
+Example `about` page
+--
+
+*output*
+
+```html
+<html>
+<head>
+  <title>Welcomem to Refresh</title>
+</head>
+<body>
+  *<h1>Hello Refresh</h1>
+  *<p>This is some content for this page.</p>
+</body>
+</html>
+```
+
+???
+
+When this page is built, the layout is rendered around that page and its content is put into the `yield` area.
+
+---
+
+name: templates
+
+### Templates
+
+Think of templates as your individual pages -- Home, About, Contact.
+
+---
+
+### Partials
+
+Useful
+
+When sharing content across multiple:
+
+* `layouts` - header, footer
+* `templates` - call-to-action graphic only needed on certain templates
+
+---
+
+name: frontmatter
+
+### Frontmatter
+
+Frontmatter allows page-specific variables to be included at the top of a template.
+
+Top of a template:
+
+```html
+---
+*title: About Refresh Baton Rouge
+*meta_description: Some descriptive text that might be used in search results.
+---
+
+<h1>Hello Refresh</h1>
+<p>This is some content for this page.</p>
+```
+
+To show this in HTML:
+
+```html
+<title>#{current_page.data.title}</title>
+```
+
+???
+
+This data can be referenced from a layout.
+
+---
+
+name: building
+
+### Building
+
+The `build` command builds your project into a folder called `build`.
+
+```bash
+middleman build
+```
+
+--
+
+Build-specific settings in `config.rb`
+
+```ruby
+configure :build do
+  # Ignore during build process
+  ignore ".git"
+
+  # Asset compression
+  activate :minify_css
+  activate :minify_javascript
+  activate :gzip
+end
+```
+
+???
+
+Middleman creates website files in a folder called build. Not all files need to be included, such as the .git folder.
+
+---
+
+name: deploying
+
+### Deploying
+
+* Simplest deployment method is to FTP contents of the `build` directory to web server
+
+--
+
+* `middleman-deploy` allows for automated 
+
+```bash
+middleman deploy
+```
+
+???
+
+Allows rsync, git, ftp
+
+---
+
+name: hosting
+
+### Hosting Options
+
+* **[Github Pages](https://pages.github.com/)** - Most documentation discusses Jekyll, but hosting on the gh-pages branch pertains to any static site.
+
+* **[Bitballoon](https://www.bitballoon.com)** - Great for quickly hosting a static site. Especially useful for prototyping, then upgrade to host with your own domain.
+
+* **[Divshot](https://divshot.com/)**
+
+* **[Forge](https://getforge.com/)**
+
+---
+
+class: middle, center
+
+demo
