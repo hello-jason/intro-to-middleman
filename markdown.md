@@ -27,20 +27,20 @@ name: history
 
 --
 
+* Currently at version 3.3.10, working on version 4
+
+???
+
+* Documentation on the Middleman website about upgrading to v4.
+
+--
+
 * Allows for [Sass](http://sass-lang.com/), [CoffeeScript](http://coffeescript.org/), asset management with [Sprockets](https://github.com/sstephenson/sprockets), and HTML templating (ERb, Haml, Slim) -- *all completely optional*
 
 ![Sass](images/logo-sass.jpg)
 ![coffeescript](images/logo-coffeescript.jpg)
 ![slim](images/logo-slim.jpg)
 ![HAML](images/logo-haml.jpg)
-
---
-
-* Currently at version 3.3.10, working on version 4
-
-???
-
-* Documentation on the Middleman website about upgrading to v4.
 
 ---
 
@@ -54,43 +54,36 @@ name: history
 
 ???
 
-* Comes out the box with a directory structure and ERb templating. You can change the directory structure, templates to Slim (or Haml, etc).
+* Comes out the box with a directory structure and ERb templating. You can change the directory structure for layouts, images, stylesheets, etc. Templates can be changed to Slim (or Haml, etc).
 
 --
 
-* One HTML file is one page
+* One template correlates directly to one html page. `slug/permalink is filename`
 
 ```tree
-├── config.rb
-├── Gemfile
-├── Gemfile.lock
 ├── source
-    ├── index.html.erb
-    ├── images
-        ├── background.png
-        ├── middleman.png
-        ├── javascripts
-        ├── all.js
-    ├── layouts
-        ├── layout.erb
-    ├── stylesheets
-        ├── all.css
-        ├── normalize.css
+    ├── about.html.erb   // example.com/about
+    ├── contact.html.erb // example.com/contact
+    ├── index.html.erb   // example.com/
 ```
+
+???
+
+Create a new page `foo.html.erb` and it will become example.com/foo
 
 ---
 
 # Great for Advanced Projects
 
-* Many websites are now built with an API. Frontend can use this API to pull data from a separate backend application. This keeps applications scalable and easier to maintain.
+* Modern web development has seen separation of frontend application, API, and backend application. A static frontend app on Middleman can use the API to pull data from the backend app.
 
 --
 
-* Many designers and developers simply deliver static HTML/JS/CSS to their clients
+* Serve static files to users, then let the client request information via something like ajax
 
 --
 
-**Automation**
+**Automation & Sugar**
 
 * One line deploys ([middleman-deploy](https://github.com/middleman-contrib/middleman-deploy))
 
@@ -98,41 +91,25 @@ name: history
 
 * Favicon generation ([middleman-favicon-maker](https://github.com/follmann/middleman-favicon-maker))
 
+* Blogging ([middleman-blog](https://github.com/middleman/middleman-blog))
+
+* ...
+
 ???
 
 There are lots of Middleman-specific extensions to be had, called gems
 
 ---
 
-name: environments
+name: prerequisites
 
-Configure options for specific environments, namely Development and Production.
-
---
-
-### Development
-
-```ruby
-configure :development do
-  # do things only in development
-end
-```
-
-???
-
-One benefit of ruby is that it was designed to be easy to read. 
-
----
-
-name: installation
-
-### Installation & Setup
+### Prerequisites
 
 **2 primary requirements** (one-time installations):
 
 --
 
-1. Ruby language
+1. Ruby language >= 1.9.3
 
   **OS X** - included<br>
   **Linux** - straight-forward with [rbenv](https://github.com/sstephenson/rbenv)<br>
@@ -148,9 +125,9 @@ On OS X Yosemite and Mavericks, Ruby 2.0 is included. OS X Mountain Lion, Lion, 
 
 1. RubyGems
 
-  Extensions to ruby are packaged into `gems`. Visit [rubygems.org](https://rubygems.org/) to install RubyGems and search for availalbe gems.
+  Extensions to ruby are packaged into `gems`. Visit [rubygems.org](https://rubygems.org/) to install RubyGems onto your computer.
 
-  Middleman has a lot of Middleman-specific gems
+  Then, search and install gems into your project. Middleman has a lot of Middleman-specific gems that add additional functionality.
 
 --
 
@@ -227,34 +204,6 @@ This creates a new directory called project-name and puts all these files and fo
 ???
 
 Initialization allows you to pass in additional parameters, such as custom [project templates](https://directory.middlemanapp.com/#/templates/all).
-
----
-
-### Setting up Middleman
-
-THIS IS WHERE YOU LEFT OFF
-
----
-
-### Introduction
-
-## livereload
-
-* Browser plugin
-
---
-
-* Enable livereload in `config.rb`
-
---
-
-### Recommended gems and purposes
-
-* Lots of Middleman-specific gems (some RoR gems work)
-
---
-
-* config.rb
 
 ---
 
@@ -417,6 +366,24 @@ The `build` command builds your project into a folder called `build`.
 ```bash
 middleman build
 ```
+
+name: environments
+
+Configure options for specific environments, namely Development and Production.
+
+--
+
+Development environment
+
+```ruby
+configure :development do
+  # do things only in development
+end
+```
+
+???
+
+One benefit of ruby is that it was designed to be easy to read. 
 
 --
 
