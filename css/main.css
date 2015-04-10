@@ -40,8 +40,14 @@ a:link, a:visited, a:hover {
   height: 15.75em;
 }
 
-img[alt^=RTFM] {
+img[alt^="RTFM"] {
 	max-width: 193px;
 	float: left;
   margin-right: 1em;
+}
+
+img[alt^="Middleman is watching"] {
+  max-width: 514px;
+  display: block;
+  margin: 0 auto;
 }

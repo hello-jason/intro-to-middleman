@@ -9,6 +9,14 @@ class: middle, center
 
 <small>by [Jason Cross](http://hellojason.net)</small>
 
+???
+
+I first learned about Middleman when we took over a client's website hosting a while back.
+
+Now, I use it for my personal website. I love the sense of freedom that I get from using a simple .
+
+I can use all the tools that I love (Sass, Slim, Git) and host it all for free on Github Pages.
+
 ---
 
 name: history
@@ -25,13 +33,72 @@ name: history
 
 * Article written by Thomas where he insists forking is a responsibility. "I should have contributed to StaticMatic...to the existing community and improved it."
 
+* StaticMatic was abandoned in 2010. Thomas is still active in Middleman.
+
 --
 
-* Currently at version 3.3.10, working on version 4
+* Currently at version 3.3.10; version 4 is in alpha.
 
 ???
 
-* Documentation on the Middleman website about upgrading to v4.
+* Documentation on the Middleman website about upgrading to v4 does not appear to be breaking everything (like going to Angular 2).
+
+---
+
+# Great for Beginners
+
+* *"Beginners"* referring to people who are comfortable with, or at least interested in, HTML/CSS/JavaScript
+
+--
+
+* No need for a database or special server-side language(s) on production server
+
+--
+
+* Easy to explore advanced tools like preprocessors, html templates
+
+--
+
+* Comes opinionated, but easy to modify
+
+???
+
+* Comes out the box with a directory structure and ERb templating. You can change the directory structure for layouts, images, stylesheets, etc. Templates can be changed to Slim (or Haml, etc).
+
+--
+
+* One template correlates directly to one html page. `file name becomes slug/permalink`
+
+```tree
+├── source
+    ├── about.html.erb   // example.com/about
+    ├── contact.html.erb // example.com/contact
+    ├── index.html.erb   // example.com/
+```
+
+???
+
+Create a new page `foo.html.erb` and it will become example.com/foo when you build the project
+
+---
+
+# Great for Advanced Projects
+
+* A static frontend app on Middleman can use an API to pull data from a separate backend application.
+
+???
+
+Modern web development has seen separation of concerns where the frontend application, the API, and the backend application are 3 different applications entirely.
+
+--
+
+* Serve static files to users, then let the client request information via something like ajax
+
+--
+
+**Automation & Sugar**
+
+* One line deploys ([middleman-deploy](https://github.com/middleman-contrib/middleman-deploy)), Image compression ([middleman-imageoptim](https://github.com/plasticine/middleman-imageoptim)), Favicon generation ([middleman-favicon-maker](https://github.com/follmann/middleman-favicon-maker)), Blogging ([middleman-blog](https://github.com/middleman/middleman-blog))
 
 --
 
@@ -44,82 +111,25 @@ name: history
 
 ---
 
-# Great for Beginners
+name: dependencies
 
-* No database. Just HTML, CSS, and (if needed) JavaScript
+### Middleman Dependencies
 
---
-
-* Opinionated if you want, overwritable if you don't
-
-???
-
-* Comes out the box with a directory structure and ERb templating. You can change the directory structure for layouts, images, stylesheets, etc. Templates can be changed to Slim (or Haml, etc).
-
---
-
-* One template correlates directly to one html page. `slug/permalink is filename`
-
-```tree
-├── source
-    ├── about.html.erb   // example.com/about
-    ├── contact.html.erb // example.com/contact
-    ├── index.html.erb   // example.com/
-```
-
-???
-
-Create a new page `foo.html.erb` and it will become example.com/foo
-
----
-
-# Great for Advanced Projects
-
-* Modern web development has seen separation of frontend application, API, and backend application. A static frontend app on Middleman can use the API to pull data from the backend app.
-
---
-
-* Serve static files to users, then let the client request information via something like ajax
-
---
-
-**Automation & Sugar**
-
-* One line deploys ([middleman-deploy](https://github.com/middleman-contrib/middleman-deploy))
-
-* Image compression ([middleman-imageoptim](https://github.com/plasticine/middleman-imageoptim))
-
-* Favicon generation ([middleman-favicon-maker](https://github.com/follmann/middleman-favicon-maker))
-
-* Blogging ([middleman-blog](https://github.com/middleman/middleman-blog))
-
-* ...
-
-???
-
-There are lots of Middleman-specific extensions to be had, called gems
-
----
-
-name: prerequisites
-
-### Prerequisites
-
-**2 primary requirements** (one-time installations):
+**2 primary requirements** before we can run Middleman (one-time installations)
 
 --
 
 1. Ruby language >= 1.9.3
 
-  **OS X** - included<br>
-  **Linux** - straight-forward with [rbenv](https://github.com/sstephenson/rbenv)<br>
+  **OS X** - included in Yosemite and Mavericks<br>
+  **Linux** - easy with [rbenv](https://github.com/sstephenson/rbenv)<br>
   **Windows** - [RubyInstaller](http://rubyinstaller.org/) (but expect issues getting projects going)
 
 ???
 
-Current version of Middleman (3.3.10) requires ruby >= 1.9.3. Latest ruby is current at 2.2.*
+Ruby 2.0 is included in Yosemite and Mavericks. Mountain Lion, Lion, and Snow Leopard ship with Ruby 1.8.7.
 
-On OS X Yosemite and Mavericks, Ruby 2.0 is included. OS X Mountain Lion, Lion, and Snow Leopard ship with Ruby 1.8.7.
+Current version of Middleman (3.3.10) requires ruby >= 1.9.3. Latest ruby is current at 2.2.*
 
 --
 
@@ -127,7 +137,9 @@ On OS X Yosemite and Mavericks, Ruby 2.0 is included. OS X Mountain Lion, Lion, 
 
   Extensions to ruby are packaged into `gems`. Visit [rubygems.org](https://rubygems.org/) to install RubyGems onto your computer.
 
-  Then, search and install gems into your project. Middleman has a lot of Middleman-specific gems that add additional functionality.
+???
+
+There are lots of Middleman-specific gems.  Some Ruby on Rails gems work with Middleman.
 
 --
 
@@ -141,6 +153,7 @@ Official Middleman documentation is very good.
 
 ???
 
+Don't overlook the offical documentation when figuring things out.
 
 ---
 
@@ -163,7 +176,7 @@ name: new-project
 
 ### Creating a New Middleman Project
 
-Working with Middleman requires using the command line. There are **very few** commands needed to get started.
+Working with Middleman requires using the command line. There are **very few** commands to learn.
 
 ```bash
 middleman init project-name
@@ -207,37 +220,98 @@ Initialization allows you to pass in additional parameters, such as custom [proj
 
 ---
 
-### Commands and usage
+name: server
 
-* Starting a local server (webrick)
+### Starting a local server
 
 ```bash
 # in project directory
 middleman
 ```
 
+???
+
+Spins up a local web server (using webrick), running your site at the given address.
+
+--
+
+Visit the URL (with port number) in your browser
+
+```bash
+== The Middleman is loading
+== The Middleman is standing watch at http://0.0.0.0:4567
+== Inspect your site configuration at http://0.0.0.0:4567/__middleman/
+```
+
+![Middleman is watching](images/middleman-init-index.jpg)
+
 ---
 
-name: Layouts
+name: config-rb
+
+### config.rb
+
+Middleman comes opinionated, but you can change things. All configuration is done in the `config.rb` file.
+
+```ruby
+set :js_dir, 'js'
+set :css_dir, 'css'
+```
+
+---
+
+name: layouts
 
 # Layouts
 
-* A common method for reusing html is to separate it into partials (such as `header` and `footer`) and include them within each page.
+A common method for reusing bits of html is to put it into other files and include those files into pages.
+
+```html
+<!-- header.php -->
+<html>
+  <head>
+    <title>Welcome to Refresh</title>
+  </head>
+  <body>
+```
+
+```html
+<!-- footer.php -->
+  <footer>Copyright 2015</footer>
+  </body>
+</html>
+```
+
+???
+
+PHP implementation of this method
+
+--
 
 ```php
 * <?php include('header.php') ?>
-    <h1>Hello Refresh</h1>
-    <p>This is some content for this page</p>
+  <h1>Hello Refresh</h1>
+  <p>This is some content for this page</p>
 * <?php include('footer.php') ?>
 ```
 
 ???
 
-This works well enough, but PHP is executed each time a user requests this page. This is inefficient.
+Works well enough, but must be included many times across all your templates.
+
+---
+
+name: middleman-layouts
+
+# Layouts in Middleman
+
+In Middleman, this concept is reversed.
+
+* A **layout** is used for the overall page scaffold, such as header, navigation, footer; things that get repeated on most pages.
 
 --
 
-* In Middleman, the layout is used for the overall scaffold of all pages. Then, the unique content on each page is included through the `yield` call.
+* Unique content on each page is injected through the `yield` call.
 
 ???
 
@@ -245,9 +319,11 @@ Yield concept also applicable to Ruby on Rails, Jekyll, Node apps.
 
 --
 
-* A layout is the overall structure used for each page. You can have multiple layouts, but the default one should be called `layout.html.erb`.
+You can have multiple layouts, but the default one should be called `layout.html.erb`.
 
 ???
+
+Remember, Middleman comes opinionated. It looks for this file in a folder called layouts.
 
 We read the filename from right to left. When this example builds it will compile `erb` into `html`.
 
@@ -257,16 +333,15 @@ Other template engines can be used instead of erb, such as `haml` or `slim`.
 
 name: layout-with-content
 
-*layout.html.erb*
-
 ```html
+<!-- layout.html.erb -->
 <html>
-<head>
-  <title>Welcomem to Refresh</title>
-</head>
-<body>
-*  <%= yield %>
-</body>
+  <head>
+    <title>Welcome to Refresh</title>
+  </head>
+  <body>
+*   <%= yield %>
+  </body>
 </html>
 ```
 
@@ -276,10 +351,9 @@ Example layout
 
 --
 
-*about.html.erb*
-
 ```html
-<h1>Hello Refresh</h1>
+<!-- about.html.erb -->
+<h1>About Refresh</h1>
 <p>This is some content for this page.</p>
 ```
 
@@ -288,17 +362,16 @@ Example layout
 Example `about` page
 --
 
-*output*
-
 ```html
+<!-- example.com/about -->
 <html>
-<head>
-  <title>Welcomem to Refresh</title>
-</head>
-<body>
-  *<h1>Hello Refresh</h1>
-  *<p>This is some content for this page.</p>
-</body>
+  <head>
+    <title>Welcome to Refresh</title>
+  </head>
+  <body>
+*   <h1>About Refresh</h1>
+*   <p>This is some content for this page.</p>
+  </body>
 </html>
 ```
 
@@ -312,7 +385,37 @@ name: templates
 
 ### Templates
 
-Think of templates as your individual pages -- Home, About, Contact.
+Create a new template for each page of your site in the **source** directory.
+
+```tree
+├── source
+  ├── index.html.erb
+  ├── about.html.erb
+  ├── contact.html.erb
+```
+
+```erb
+<!-- index.html.erb -->
+<h1>Welcome to Refresh</h1>
+<%= image_tag 'logo.png' %>
+<p>Glad to have you here.</p>
+```
+
+```html
+<!-- about.html.erb -->
+<h1>About Refresh</h1>
+<p>This is some content for this page.</p>
+```
+
+```html
+<!-- contact.html.erb -->
+<h1>Contact Us</h1>
+<p>We're on <%= link_to 'meetup', 'http://www.meetup.com/refresh-baton-rouge/' %>
+```
+
+???
+
+Since we have a layout, each template only contains the content for that page.
 
 ---
 
