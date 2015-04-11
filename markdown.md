@@ -19,6 +19,34 @@ I can use all the tools that I love (Sass, Slim, Git) and host it all for free o
 
 ---
 
+name: what-is-middleman
+
+# What is Middleman?
+
+Middleman is a static website generator.
+
+--
+
+* Gives you access to all the tools of modern web stacks.
+
+???
+
+Preprocessors, html templating, image optimization, full-blow programming language (ruby)
+
+--
+
+* Outputs simple HTML, CSS, and JavaScript files that can run on any web server.
+
+???
+
+Lots of hosting options, including free ones like GitHub Pages
+
+--
+
+It ships slightly opinionated with presets to get you going quickly, but it stays out of your way completely and lets you change those presets if you want.
+
+---
+
 name: history
 
 # Brief History of Middleman
@@ -47,15 +75,11 @@ name: history
 
 # Great for Beginners
 
-* *"Beginners"* referring to people who are comfortable with, or at least interested in, HTML/CSS/JavaScript
+*"Beginners"* referring to people who are comfortable with, or at least interested in, HTML/CSS
 
 --
 
-* No need for a database or special server-side language(s) on production server
-
---
-
-* Easy to explore advanced tools like preprocessors, html templates
+* Built-in web server
 
 --
 
@@ -63,7 +87,7 @@ name: history
 
 ???
 
-* Comes out the box with a directory structure and ERb templating. You can change the directory structure for layouts, images, stylesheets, etc. Templates can be changed to Slim (or Haml, etc).
+* Comes out the box with a directory structure and places to put your layouts, images, stylesheets, etc.
 
 --
 
@@ -79,6 +103,14 @@ name: history
 ???
 
 Create a new page `foo.html.erb` and it will become example.com/foo when you build the project
+
+--
+
+* No need for a database or special server-side language(s) on production server
+
+???
+
+Middleman outputs normal HTML, CSS, and JS files which can run on nearly any server.
 
 ---
 
@@ -239,24 +271,15 @@ Visit the URL (with port number) in your browser
 
 ```bash
 == The Middleman is loading
-== The Middleman is standing watch at http://0.0.0.0:4567
+*== The Middleman is standing watch at http://0.0.0.0:4567
 == Inspect your site configuration at http://0.0.0.0:4567/__middleman/
 ```
 
 ![Middleman is watching](images/middleman-init-index.jpg)
 
----
+--
 
-name: config-rb
-
-### config.rb
-
-Middleman comes opinionated, but you can change things. All configuration is done in the `config.rb` file.
-
-```ruby
-set :js_dir, 'js'
-set :css_dir, 'css'
-```
+name: make-stuff
 
 ---
 
@@ -308,6 +331,10 @@ name: middleman-layouts
 In Middleman, this concept is reversed.
 
 * A **layout** is used for the overall page scaffold, such as header, navigation, footer; things that get repeated on most pages.
+
+???
+
+This is true for other frameworks as well.
 
 --
 
@@ -421,10 +448,6 @@ Since we have a layout, each template only contains the content for that page.
 
 ### Partials
 
-Useful
-
-When sharing content across multiple:
-
 * `layouts` - header, footer
 * `templates` - call-to-action graphic only needed on certain templates
 
@@ -476,6 +499,23 @@ Configure options for specific environments, namely Development and Production.
 
 --
 
+???
+
+Middleman creates website files in a folder called build. Not all files need to be included, such as the .git folder.
+
+---
+
+name: config-rb
+
+### config.rb
+
+Middleman comes opinionated, but you can change things. All configuration is done in the `config.rb` file.
+
+```ruby
+set :js_dir, 'js'
+set :css_dir, 'css'
+```
+
 Development environment
 
 ```ruby
@@ -503,10 +543,6 @@ configure :build do
   activate :gzip
 end
 ```
-
-???
-
-Middleman creates website files in a folder called build. Not all files need to be included, such as the .git folder.
 
 ---
 
