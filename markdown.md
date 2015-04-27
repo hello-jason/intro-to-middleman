@@ -13,9 +13,9 @@ class: middle, center
 
 I first learned about Middleman when we took over a client's website hosting a while back.
 
-Now, I use it for my personal website. I love the sense of freedom that I get from using a simple .
+Now, I use it for my personal website.
 
-I can use all the tools that I love (Sass, Slim, Git) and host it all for free on Github Pages.
+I can use all the tools that I love (SCSS, Slim, Git) and host it all for free on GitHub Pages.
 
 ---
 
@@ -23,7 +23,19 @@ name: what-is-middleman
 
 # What is Middleman?
 
-Middleman is a static website generator.
+Simplest definition: **static site generator**
+
+--
+
+The term **static** (or flat) means that page that can be delivered to users exactly as it is stored.
+
+???
+
+This differs from a dynamic web page, which is generated on a web server before it is delivered to the user. 
+
+--
+
+* Middleman is installed and runs on your local computer. You **build** the site locally, which creates HTML, CSS, and JavaScript files, then upload those files to a web server.
 
 --
 
@@ -31,7 +43,7 @@ Middleman is a static website generator.
 
 ???
 
-Preprocessors, html templating, image optimization, full-blow programming language (ruby)
+Preprocessors, html templating, image optimization, full-blown programming language (ruby)
 
 --
 
@@ -43,18 +55,6 @@ Lots of hosting options, including free ones like GitHub Pages
 
 --
 
-It ships slightly opinionated with presets to get you going quickly, but it stays out of your way completely and lets you change those presets if you want.
-
----
-
-name: history
-
-# Brief History of Middleman
-
-* Built on Ruby programming language, inspired by Ruby on Rails
-
---
-
 * Fork of [StaticMatic](https://github.com/staticmatic/staticmatic) by [Thomas Reynolds](http://awardwinningfjords.com/) (which he [has regretted](http://awardwinningfjords.com/2012/12/30/dont-fork.html))
 
 ???
@@ -62,14 +62,6 @@ name: history
 * Article written by Thomas where he insists forking is a responsibility. "I should have contributed to StaticMatic...to the existing community and improved it."
 
 * StaticMatic was abandoned in 2010. Thomas is still active in Middleman.
-
---
-
-* Currently at version 3.3.10; version 4 is in alpha.
-
-???
-
-* Documentation on the Middleman website about upgrading to v4 does not appear to be breaking everything (like going to Angular 2).
 
 ---
 
@@ -91,7 +83,7 @@ name: history
 
 --
 
-* One template correlates directly to one html page. `file name becomes slug/permalink`
+* One template correlates directly to one html page*. `file name becomes slug/permalink`
 
 ```tree
 ├── source
@@ -102,7 +94,7 @@ name: history
 
 ???
 
-Create a new page `foo.html.erb` and it will become example.com/foo when you build the project
+Create a new page `foo.html.erb` and it will become example.com/foo when you build the project. The asterisk is because you can have data files that Middleman can use to generate several pages.
 
 --
 
@@ -116,7 +108,7 @@ Middleman outputs normal HTML, CSS, and JS files which can run on nearly any ser
 
 # Great for Advanced Projects
 
-* A static frontend app on Middleman can use an API to pull data from a separate backend application.
+* A static frontend app on Middleman can use the API of some other system to pull data from some other application.
 
 ???
 
@@ -134,9 +126,9 @@ Modern web development has seen separation of concerns where the frontend applic
 
 --
 
-* Allows for [Sass](http://sass-lang.com/), [CoffeeScript](http://coffeescript.org/), asset management with [Sprockets](https://github.com/sstephenson/sprockets), and HTML templating (ERb, Haml, Slim) -- *all completely optional*
+* Allows for [SCSS](http://SCSS-lang.com/), [CoffeeScript](http://coffeescript.org/), asset management with [Sprockets](https://github.com/sstephenson/sprockets), and HTML templating (ERb, Haml, Slim) -- *all completely optional*
 
-![Sass](images/logo-sass.jpg)
+![SCSS](images/logo-sass.jpg)
 ![coffeescript](images/logo-coffeescript.jpg)
 ![slim](images/logo-slim.jpg)
 ![HAML](images/logo-haml.jpg)
