@@ -73,13 +73,17 @@ Lots of hosting options, including free ones like GitHub Pages
 
 * Built-in web server
 
+???
+
+No need to configure nginx or apache. Middleman includes a web server.
+
 --
 
 * Comes opinionated, but easy to modify
 
 ???
 
-* Comes out the box with a directory structure and places to put your layouts, images, stylesheets, etc.
+* Comes out the box with a directory structure and places to put your layouts, images, stylesheets, etc. Low barrier to entry.
 
 --
 
@@ -94,7 +98,7 @@ Lots of hosting options, including free ones like GitHub Pages
 
 ???
 
-Create a new page `foo.html.erb` and it will become example.com/foo when you build the project. The asterisk is because you can have data files that Middleman can use to generate several pages.
+Create a new page `about.html.erb` and it will available example.com/about when you build the project. The asterisk is because you can have data files that Middleman can use to generate several pages.
 
 --
 
@@ -193,6 +197,10 @@ Middleman is just a gem. Install it with RubyGems (one-time installation):
 ```bash
 gem install middleman
 ```
+
+???
+
+This gives us the `middleman` command on our command line
 
 ---
 
@@ -304,6 +312,7 @@ PHP implementation of this method
 --
 
 ```php
+/*  hello.php */
 * <?php include('header.php') ?>
   <h1>Hello Refresh</h1>
   <p>This is some content for this page</p>
@@ -312,7 +321,7 @@ PHP implementation of this method
 
 ???
 
-Works well enough, but must be included many times across all your templates.
+Works well enough, but must be included many times across all your templates. Lots of duplication
 
 ---
 
@@ -434,7 +443,7 @@ Create a new template for each page of your site in the **source** directory.
 
 ???
 
-Since we have a layout, each template only contains the content for that page.
+Middleman refers to each `page` as a `template`. Since we have a layout, each template only contains the content for that page. Templates and HTML pages are 1-to-1.
 
 ---
 
@@ -451,6 +460,8 @@ name: frontmatter
 
 Frontmatter allows page-specific variables to be included at the top of a template.
 
+--
+
 Top of a template:
 
 ```html
@@ -462,6 +473,8 @@ Top of a template:
 <h1>Hello Refresh</h1>
 <p>This is some content for this page.</p>
 ```
+
+--
 
 To show this in HTML:
 
