@@ -449,8 +449,22 @@ Middleman refers to each `page` as a `template`. Since we have a layout, each te
 
 ### Partials
 
-* `layouts` - header, footer
-* `templates` - call-to-action graphic only needed on certain templates
+Partials let you split out pieces of functionality to be reused across several pages, as needed. Put an `underscore` before file names.
+
+```erb
+*<!-- _back-to-blog.html.erb -->
+<p>Go back to the <a href="#{url_articles}">blog archive</a></p>
+```
+
+```erb
+<!-- article-welcome-to-refresh.html.erb -->
+<h1>Groovy article about Refresh</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<hr>
+*<%= partial "back-to-blog" %>
+```
 
 ---
 
@@ -458,33 +472,45 @@ name: frontmatter
 
 ### Frontmatter
 
-Frontmatter allows page-specific variables to be included at the top of a template.
+Frontmatter allows page-specific content to be included at the top of a template, between a set of 3 dashes.
 
 --
 
-Top of a template:
-
 ```html
----
+<!-- about.html.erb -->
+*---
 *title: About Refresh Baton Rouge
 *meta_description: Some descriptive text that might be used in search results.
----
+*---
 
 <h1>Hello Refresh</h1>
 <p>This is some content for this page.</p>
 ```
 
+???
+
+Frontmatter assigns this content to a variable.
+
 --
 
-To show this in HTML:
+This content is assigned to a variable that can be used in other layouts.
 
-```html
-<title>#{current_page.data.title}</title>
+```erb
+<!-- layout.html.erb -->
+<html>
+  <head>
+*   <% if current_page.data.title %>
+*     <title>#{current_page.data.title}</title>
+*   <% else %>
+*     <title>Refresh Baton Rouge</title>
+*   <% end %>
+  </head>
+</html>
 ```
 
 ???
 
-This data can be referenced from a layout.
+Ruby variables are available in your pages in the format #{variable_name}
 
 ---
 
@@ -497,16 +523,6 @@ The `build` command builds your project into a folder called `build`.
 ```bash
 middleman build
 ```
-
-name: environments
-
-Configure options for specific environments, namely Development and Production.
-
---
-
-???
-
-Middleman creates website files in a folder called build. Not all files need to be included, such as the .git folder.
 
 ---
 
@@ -559,7 +575,7 @@ name: deploying
 
 --
 
-* `middleman-deploy` allows for automated 
+* `middleman-deploy` gem allows for automated deployments with a single command
 
 ```bash
 middleman deploy
@@ -567,7 +583,7 @@ middleman deploy
 
 ???
 
-Allows rsync, git, ftp
+Allows rsync, git, ftp, sftp
 
 ---
 
@@ -588,3 +604,10 @@ name: hosting
 class: middle, center
 
 demo
+
+???
+
+* middleman init welcome-to-refresh
+* activate livereload
+* middleman server
+* create a new template `welcome.html.erb`
