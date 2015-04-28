@@ -27,15 +27,23 @@ Simplest definition: **static site generator**
 
 --
 
-The term **static** (or flat) means that page that can be delivered to users exactly as it is stored.
+The term **static** (or flat) means that page that can be delivered to users exactly as it is stored (typically .html, css, .js).
 
 ???
 
-This differs from a dynamic web page, which is generated on a web server before it is delivered to the user. 
+This differs from a dynamic web page, which is generated on a web server before it is delivered to the user, often querying data out of a database and so forth.
 
 --
 
-* Middleman is installed and runs on your local computer. You **build** the site locally, which creates HTML, CSS, and JavaScript files, then upload those files to a web server.
+* Middleman is installed and runs on your local computer. It does not run on a server.
+
+--
+
+* You **build** the site locally, which creates HTML, CSS, and JavaScript files, then upload those files to a web server.
+
+???
+
+Lots of hosting options, including free ones like GitHub Pages
 
 --
 
@@ -43,15 +51,7 @@ This differs from a dynamic web page, which is generated on a web server before 
 
 ???
 
-Preprocessors, html templating, image optimization, full-blown programming language (ruby)
-
---
-
-* Outputs simple HTML, CSS, and JavaScript files that can run on any web server.
-
-???
-
-Lots of hosting options, including free ones like GitHub Pages
+Preprocessors, html templating, image optimization, favicon generation, full-blown programming language (ruby)
 
 --
 
@@ -69,6 +69,10 @@ Lots of hosting options, including free ones like GitHub Pages
 
 *"Beginners"* referring to people who are comfortable with, or at least interested in, HTML/CSS
 
+???
+
+I think Middleman is the perfect next step for people writing HTML in Notepad/Sublime.
+
 --
 
 * Built-in web server
@@ -79,15 +83,15 @@ No need to configure nginx or apache. Middleman includes a web server.
 
 --
 
-* Comes opinionated, but easy to modify
+* Comes very slightly opinionated, and easy to modify.
 
 ???
 
-* Comes out the box with a directory structure and places to put your layouts, images, stylesheets, etc. Low barrier to entry.
+Comes out the box with a directory structure and folders to put your layouts, images, stylesheets, etc. Low barrier to entry.
 
 --
 
-* One template correlates directly to one html page*. `file name becomes slug/permalink`
+* One template correlates directly to one html page*. No routes. `file name becomes slug/permalink`
 
 ```tree
 ├── source
@@ -98,7 +102,9 @@ No need to configure nginx or apache. Middleman includes a web server.
 
 ???
 
-Create a new page `about.html.erb` and it will available example.com/about when you build the project. The asterisk is because you can have data files that Middleman can use to generate several pages.
+Create a new page `about.html.erb` and it will available example.com/about when you build the project.
+
+The asterisk is because you can have data files (yml, json) that Middleman can use to generate several pages.
 
 --
 
@@ -112,7 +118,7 @@ Middleman outputs normal HTML, CSS, and JS files which can run on nearly any ser
 
 # Great for Advanced Projects
 
-* A static frontend app on Middleman can use the API of some other system to pull data from some other application.
+* **Separation of concerns** - A static frontend app on Middleman can uses JavaScript to talk with an API and pull data from some other backend application.
 
 ???
 
@@ -126,7 +132,7 @@ Modern web development has seen separation of concerns where the frontend applic
 
 **Automation & Sugar**
 
-* One line deploys ([middleman-deploy](https://github.com/middleman-contrib/middleman-deploy)), Image compression ([middleman-imageoptim](https://github.com/plasticine/middleman-imageoptim)), Favicon generation ([middleman-favicon-maker](https://github.com/follmann/middleman-favicon-maker)), Blogging ([middleman-blog](https://github.com/middleman/middleman-blog))
+* Bundler for gem management, One line deploys ([middleman-deploy](https://github.com/middleman-contrib/middleman-deploy)), Image compression ([middleman-imageoptim](https://github.com/plasticine/middleman-imageoptim)), Favicon generation ([middleman-favicon-maker](https://github.com/follmann/middleman-favicon-maker)), Blogging in markdown ([middleman-blog](https://github.com/middleman/middleman-blog))
 
 --
 
@@ -150,24 +156,24 @@ name: dependencies
 1. Ruby language >= 1.9.3
 
   **OS X** - included in Yosemite and Mavericks<br>
-  **Linux** - easy with [rbenv](https://github.com/sstephenson/rbenv)<br>
+  **Linux** - easy with [rbenv](https://github.com/sstephenson/rbenv) and [rvm](https://rvm.io/)<br>
   **Windows** - [RubyInstaller](http://rubyinstaller.org/) (but expect issues getting projects going)
 
 ???
 
 Ruby 2.0 is included in Yosemite and Mavericks. Mountain Lion, Lion, and Snow Leopard ship with Ruby 1.8.7.
 
-Current version of Middleman (3.3.10) requires ruby >= 1.9.3. Latest ruby is current at 2.2.*
+For **Windows**, I recommend having a Virtual Box with CentOS (or some other distro)
 
 --
 
 1. RubyGems
 
-  Extensions to ruby are packaged into `gems`. Visit [rubygems.org](https://rubygems.org/) to install RubyGems onto your computer.
+  Standalone pieces of functionality are packaged into `gems`, and Middleman itself is a gem. Visit [rubygems.org](https://rubygems.org/) to install RubyGems onto your computer.
 
 ???
 
-There are lots of Middleman-specific gems.  Some Ruby on Rails gems work with Middleman.
+There are lots of Middleman-specific gems. Some Ruby on Rails gems work with Middleman.
 
 --
 
@@ -226,7 +232,7 @@ Middleman commands are preceded with the word `middleman`.
 
 --
 
-This creates a new directory called project-name and puts all these files and folders into it.
+This creates a new directory called *project-name* and puts all these files and folders into it.
 
 ```tree
 ├── config.rb
@@ -248,7 +254,9 @@ This creates a new directory called project-name and puts all these files and fo
 
 ???
 
-Initialization allows you to pass in additional parameters, such as custom [project templates](https://directory.middlemanapp.com/#/templates/all).
+See Middleman's opinionated decisions: your project files go into `source`, images in `images`, and css in `stylesheets`.
+
+The initialization command allows you to pass in additional parameters, such as custom [project templates](https://directory.middlemanapp.com/#/templates/all).
 
 ---
 
