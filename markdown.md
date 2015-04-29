@@ -198,7 +198,7 @@ class: middle
 
 With ruby and RubyGems installed, we need to install Middleman itself.
 
-Middleman is just a gem. Install it with RubyGems (one-time installation):
+Middleman is just a gem. One-time installation with RubyGems command `gem`:
 
 ```bash
 gem install middleman
@@ -254,9 +254,9 @@ This creates a new directory called *project-name* and puts all these files and 
 
 ???
 
-See Middleman's opinionated decisions: your project files go into `source`, images in `images`, and css in `stylesheets`.
+Middleman's opinionated decisions: your project files go into `source`, images in `images`, and css in `stylesheets`.
 
-The initialization command allows you to pass in additional parameters, such as custom [project templates](https://directory.middlemanapp.com/#/templates/all).
+The initialization command allows you to pass in additional parameters after the project name, such as custom [project templates](https://directory.middlemanapp.com/#/templates/all) that could have a.
 
 ---
 
@@ -266,12 +266,12 @@ name: server
 
 ```bash
 # in project directory
-middleman
+middleman server
 ```
 
 ???
 
-Spins up a local web server (using webrick), running your site at the given address.
+Spins up a local web server, running your site at the given address.
 
 --
 
@@ -285,141 +285,26 @@ Visit the URL (with port number) in your browser
 
 ![Middleman is watching](images/middleman-init-index.jpg)
 
---
-
-name: make-stuff
-
 ---
 
-name: layouts
+# Recap
 
-# Layouts
+* Installed Middleman's dependencies (ruby, Rubygems)
 
-A common method for reusing bits of html is to put it into other files and include those files into pages.
+* Installed Middlman itself (`gem install middleman`)
 
-```html
-<!-- header.php -->
-<html>
-  <head>
-    <title>Welcome to Refresh</title>
-  </head>
-  <body>
-```
+* Generated a new Middleman project (`middleman init project-name`)
 
-```html
-<!-- footer.php -->
-  <footer>Copyright 2015</footer>
-  </body>
-</html>
-```
+* Started Middleman server (`middleman server`)
 
-???
-
-PHP implementation of this method
-
---
-
-```php
-/*  hello.php */
-* <?php include('header.php') ?>
-  <h1>Hello Refresh</h1>
-  <p>This is some content for this page</p>
-* <?php include('footer.php') ?>
-```
-
-???
-
-Works well enough, but must be included many times across all your templates. Lots of duplication
-
----
-
-name: middleman-layouts
-
-# Layouts in Middleman
-
-In Middleman, this concept is reversed.
-
-* A **layout** is used for the overall page scaffold, such as header, navigation, footer; things that get repeated on most pages.
-
-???
-
-This is true for other frameworks as well.
-
---
-
-* Unique content on each page is injected through the `yield` call.
-
-???
-
-Yield concept also applicable to Ruby on Rails, Jekyll, Node apps.
-
---
-
-You can have multiple layouts, but the default one should be called `layout.html.erb`.
-
-???
-
-Remember, Middleman comes opinionated. It looks for this file in a folder called layouts.
-
-We read the filename from right to left. When this example builds it will compile `erb` into `html`.
-
-Other template engines can be used instead of erb, such as `haml` or `slim`.
-
----
-
-name: layout-with-content
-
-```html
-<!-- layout.html.erb -->
-<html>
-  <head>
-    <title>Welcome to Refresh</title>
-  </head>
-  <body>
-*   <%= yield %>
-  </body>
-</html>
-```
-
-???
-
-Example layout
-
---
-
-```html
-<!-- about.html.erb -->
-<h1>About Refresh</h1>
-<p>This is some content for this page.</p>
-```
-
-???
-
-Example `about` page
---
-
-```html
-<!-- example.com/about -->
-<html>
-  <head>
-    <title>Welcome to Refresh</title>
-  </head>
-  <body>
-*   <h1>About Refresh</h1>
-*   <p>This is some content for this page.</p>
-  </body>
-</html>
-```
-
-???
-
-When this page is built, the layout is rendered around that page and its content is put into the `yield` area.
+<br>
+Now we can start building our site.
 
 ---
 
 name: templates
 
-### Templates
+# Templates
 
 Create a new template for each page of your site in the **source** directory.
 
@@ -451,18 +336,228 @@ Create a new template for each page of your site in the **source** directory.
 
 ???
 
-Middleman refers to each `page` as a `template`. Since we have a layout, each template only contains the content for that page. Templates and HTML pages are 1-to-1.
+Middleman refers to each `page` as a `template`.
+
+Templates and HTML pages are 1-to-1.
+
+Each template only contains the content that is unique for that page.
 
 ---
 
-### Partials
+name: layouts
 
-Partials let you split out pieces of functionality to be reused across several pages, as needed. Put an `underscore` before file names.
+# Layouts
+
+A common way to stay DRY (don't repeat yourself) is to put small amounts of HTML into separate files and include those files into pages.
+
+--
+
+```html
+<!-- header.php -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to Refresh</title>
+  </head>
+  <body>
+```
+
+```html
+<!-- footer.php -->
+  <footer>Copyright 2015</footer>
+  </body>
+</html>
+```
+
+???
+
+PHP example of this method
+
+--
+
+```php
+/*  hello.php */
+* <?php include('header.php') ?>
+  <h1>Hello Refresh</h1>
+  <p>This is some content for this page</p>
+* <?php include('footer.php') ?>
+```
+
+???
+
+Works well enough, but must be included many times across all your templates. Lots of duplication
+
+---
+
+name: middleman-layouts
+
+# Layouts in Middleman
+
+In Middleman, this concept is reversed.
+
+* Earlier, we saw that a template will have all the content that is unique for that specific page (about, contact).
+
+* A **layout** is the structure around that page content, used for the things that get repeated on every page (header, navigation, footer).
+
+???
+
+This is true for other frameworks as well.
+
+--
+
+* When we build our Middleman site, it takes the **layout** as the page's scaffold, then unique content for that page is injected through the `yield` call.
+
+???
+
+Yield concept also applicable to Ruby on Rails, Jekyll, Node apps.
+
+---
+
+name: layout-with-content
+
+```html
+<!-- layout.html.erb -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to Refresh</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+  <body>
+*   <%= yield %>
+  </body>
+</html>
+```
+
+???
+
+Example layout with everything that gets repeated on all pages of your site.
+
+--
+
+```html
+<!-- about.html.erb -->
+<h1>About Refresh</h1>
+<p>This is some content for this page.</p>
+```
+
+???
+
+Example `about` page. Remember, templates are 1-to-1 with HTML pages.
+
+--
+
+```html
+<!-- example.com/about -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to Refresh</title>
+  </head>
+  <body>
+*   <h1>About Refresh</h1>
+*   <p>This is some content for this page.</p>
+  </body>
+</html>
+```
+
+???
+
+When this site is built, it will smush the layout and template together. Unique content from the `about` template is inserted in the yield call.
+
+
+---
+
+name: default-layout
+class: middle
+
+# Default Layout
+
+Middleman will look for your default layout, called `layout.html.erb` in the **layouts** folder*.
+
+```tree
+├── source
+  ├── layouts
+    ├── layout.html.erb
+```
+
+
+???
+
+*You can have multiple layouts.
+
+We read the filename from right to left. When this example builds it will compile `erb` into `html`.
+
+Other template engines can be used instead of erb, such as `haml` or `slim`.
+
+---
+
+name: building
+
+### Building
+
+The `build` command builds your project into a folder called `build`.
+
+```bash
+middleman build
+```
+
+--
+
+### Deploying
+
+* Simplest deployment method is to FTP contents of the `build` directory to web server
+
+---
+
+name: hosting
+
+### Hosting Options
+
+* **[Github Pages](https://pages.github.com/)** - Most documentation discusses Jekyll, but hosting on the gh-pages branch pertains to any static site.
+
+* **[Bitballoon](https://www.bitballoon.com)** - Great for quickly hosting a static site. Especially useful for prototyping, then upgrade to host with your own domain.
+
+* **[Divshot](https://divshot.com/)**
+
+* **[Forge](https://getforge.com/)**
+
+---
+
+name: demo
+class: middle, center
+
+![Middleman logo](images/middleman-logo.svg)
+
+demo
+
+(next, advanced topics)
+
+???
+
+* middleman init welcome-to-refresh
+* activate livereload
+* middleman server
+* create a new template `welcome.html.erb`
+* add content
+* visit page in browser /welcome.html
+* in config.rb, add `activate :directory_indexes
+* visit page again at /welcome to show no .html
+
+---
+
+# Partials
+
+Partials let you split out pieces of functionality to be reused across several pages, as needed. Put an **underscore** before file names.
 
 ```erb
 *<!-- _back-to-blog.html.erb -->
 <p>Go back to the <a href="#{url_articles}">blog archive</a></p>
 ```
+
+--
+
+Call the partial with the partial **helper**. Lots of helpers in Middleman docs, including `link_to` and `image_tag`.
 
 ```erb
 <!-- article-welcome-to-refresh.html.erb -->
@@ -522,18 +617,6 @@ Ruby variables are available in your pages in the format #{variable_name}
 
 ---
 
-name: building
-
-### Building
-
-The `build` command builds your project into a folder called `build`.
-
-```bash
-middleman build
-```
-
----
-
 name: config-rb
 
 ### config.rb
@@ -572,50 +655,3 @@ configure :build do
   activate :gzip
 end
 ```
-
----
-
-name: deploying
-
-### Deploying
-
-* Simplest deployment method is to FTP contents of the `build` directory to web server
-
---
-
-* `middleman-deploy` gem allows for automated deployments with a single command
-
-```bash
-middleman deploy
-```
-
-???
-
-Allows rsync, git, ftp, sftp
-
----
-
-name: hosting
-
-### Hosting Options
-
-* **[Github Pages](https://pages.github.com/)** - Most documentation discusses Jekyll, but hosting on the gh-pages branch pertains to any static site.
-
-* **[Bitballoon](https://www.bitballoon.com)** - Great for quickly hosting a static site. Especially useful for prototyping, then upgrade to host with your own domain.
-
-* **[Divshot](https://divshot.com/)**
-
-* **[Forge](https://getforge.com/)**
-
----
-
-class: middle, center
-
-demo
-
-???
-
-* middleman init welcome-to-refresh
-* activate livereload
-* middleman server
-* create a new template `welcome.html.erb`

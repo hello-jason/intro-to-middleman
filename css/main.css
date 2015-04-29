@@ -26,7 +26,7 @@ a:link, a:visited, a:hover {
 }
 
 /* Introduction */
-#slide-introduction {
+#slide-introduction, #slide-demo {
   background-color: #F3C859;
   color: #fff;
 }
@@ -36,7 +36,7 @@ a:link, a:visited, a:hover {
 #slide-introduction a:link, #slide-introduction a:visited, #slide-introduction a:hover {
   color: #9e823a;
 }
-#slide-introduction img {
+#slide-introduction img, #slide-demo img {
   height: 15.75em;
 }
 
