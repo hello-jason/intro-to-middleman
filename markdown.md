@@ -537,27 +537,35 @@ demo
 
 * middleman init welcome-to-refresh
 * activate livereload
-* middleman server
+* bundle exec middleman server
 * create a new template `welcome.html.erb`
 * add content
-* visit page in browser /welcome.html
+* visit page in browser http://localhost:4567/welcome.html
 * in config.rb, add `activate :directory_indexes`
+* restart server
 * visit page again at /welcome to show no .html
 
 ---
 
-# Partials
+# Helper Methods
 
-Partials let you split out pieces of functionality to be reused across several pages, as needed. Put an **underscore** before file names.
+Helpers are bits of ruby code that help you with HTML tasks. Middleman comes with its own helpers, and you can easily create your own.
+
+--
+
+**Links**
+```erb
+<%= link_to 'My Site', 'http://mysite.com' %>
+```
+
+--
+
+**Partials**
 
 ```erb
 *<!-- _back-to-blog.html.erb -->
 <p>Go back to the <a href="#{url_articles}">blog archive</a></p>
 ```
-
---
-
-Call the partial with the partial **helper**. Lots of helpers in Middleman docs, including `link_to` and `image_tag`.
 
 ```erb
 <!-- article-welcome-to-refresh.html.erb -->
@@ -628,6 +636,8 @@ set :js_dir, 'js'
 set :css_dir, 'css'
 ```
 
+--
+
 Development environment
 
 ```ruby
@@ -642,16 +652,26 @@ One benefit of ruby is that it was designed to be easy to read.
 
 --
 
-Build-specific settings in `config.rb`
+Build-specific settings
 
 ```ruby
 configure :build do
   # Ignore during build process
   ignore ".git"
-
   # Asset compression
   activate :minify_css
   activate :minify_javascript
   activate :gzip
 end
 ```
+
+---
+
+name: thanks
+class: middle, center
+
+![Middleman logo](images/middleman-logo.svg)
+
+thanks
+
+<small>This presentation is on GitHub: [https://github.com/hello-jason/intro-to-middleman](https://github.com/hello-jason/intro-to-middleman)</small>

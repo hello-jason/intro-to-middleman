@@ -26,17 +26,17 @@ a:link, a:visited, a:hover {
 }
 
 /* Introduction */
-#slide-introduction, #slide-demo {
+#slide-introduction, #slide-demo, #slide-thanks {
   background-color: #F3C859;
   color: #fff;
 }
 #slide-introduction h1 {
 	margin-top: 0;
 }
-#slide-introduction a:link, #slide-introduction a:visited, #slide-introduction a:hover {
+#slide-introduction a:link, #slide-introduction a:visited, #slide-introduction a:hover, #slide-thanks a:link, #slide-thanks a:visited, #slide-thanks a:hover {
   color: #9e823a;
 }
-#slide-introduction img, #slide-demo img {
+#slide-introduction img, #slide-demo img, #slide-thanks img {
   height: 15.75em;
 }
 
