@@ -6,7 +6,7 @@
 git clone git@github.com:hello-jason/intro-to-middleman.git && cd intro-to-middleman
 ```
 
-* install dependencies (requires npm) and start server
+* install dependencies and start server (requires npm)
 
 ```bash
 npm start
