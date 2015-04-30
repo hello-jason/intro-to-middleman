@@ -10,7 +10,6 @@ h1, h2, h3 {
 }
 .remark-inline-code {
   background: #F3C859;
-  border-bottom: 1px solid #9e823a;
   padding: 3px 6px;
   color: #9e823a;
   display: inline-block;
@@ -22,7 +21,8 @@ a:link, a:visited, a:hover {
 
 /* All Slides*/
 .remark-slide-content {
-
+  background: #353535;
+  color: #fff;
 }
 
 /* Introduction */

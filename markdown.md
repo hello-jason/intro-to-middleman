@@ -5,7 +5,7 @@ class: middle, center
 
 # Introduction to Middleman
 
-**[https://middlemanapp.com/](https://middlemanapp.com/)**
+**[https://middlemanapp.com](https://middlemanapp.com/)**
 
 <small>by [Jason Cross](http://hellojason.net)</small>
 
@@ -541,7 +541,7 @@ demo
 * create a new template `welcome.html.erb`
 * add content
 * visit page in browser /welcome.html
-* in config.rb, add `activate :directory_indexes
+* in config.rb, add `activate :directory_indexes`
 * visit page again at /welcome to show no .html
 
 ---
