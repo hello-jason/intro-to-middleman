@@ -13,6 +13,6 @@
     "tests"
   ],
   "dependencies": {
-    "remark": "~0.10.2"
+    "remark": "~0.11.0"
   }
 }
